@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   get 'home/index'
+  namespace :home do
+    get 'index'
+    get 'rooms'
+    get 'prices'
+  end
 
   root 'home#index'
 

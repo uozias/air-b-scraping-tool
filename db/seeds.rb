@@ -5,3 +5,19 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+special_area = TargetArea.create(
+                 name: '世田谷区',
+                 category: '特別区'
+             )
+
+target_areas = [
+    {
+        name: '桜新町',
+        rail_line: '東急田園都市線',
+        category: '駅',
+        target_area_id: special_area.id
+    }
+]
+TargetArea.create(target_areas)

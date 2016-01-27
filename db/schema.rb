@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121155451) do
+ActiveRecord::Schema.define(version: 20160127110635) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "user",       limit: 255
@@ -49,13 +49,30 @@ ActiveRecord::Schema.define(version: 20160121155451) do
   add_index "room_attributes", ["room_id"], name: "index_room_attributes_on_room_id", using: :btree
 
   create_table "rooms", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.string   "url",        limit: 255
-    t.integer  "capacity",   limit: 4
-    t.integer  "airbnb_id",  limit: 8
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "title",           limit: 255
+    t.string   "url",             limit: 255
+    t.string   "capacity",        limit: 255
+    t.integer  "airbnb_id",       limit: 8
+    t.string   "category",        limit: 255
+    t.integer  "bed_room_number", limit: 4
+    t.integer  "bed_number",      limit: 4
+    t.string   "address",         limit: 255
+    t.string   "area_name",       limit: 255
+    t.integer  "target_area_id",  limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
+
+  create_table "target_areas", force: :cascade do |t|
+    t.string   "name",           limit: 255
+    t.string   "category",       limit: 255
+    t.string   "rail_line",      limit: 255
+    t.integer  "target_area_id", limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "target_areas", ["target_area_id"], name: "index_target_areas_on_target_area_id", using: :btree
 
   add_foreign_key "prices", "rooms"
   add_foreign_key "reservations", "rooms"

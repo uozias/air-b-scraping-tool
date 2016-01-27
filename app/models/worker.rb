@@ -5,35 +5,37 @@ class Worker
   def self.execute
 
 
-    # account = Account.first
-    # if account.nil?
-    #   write_log 'no account'
-    #   return nil
-    # end
+
+  end
+
+  def self.search_rooms
+
     @operator = WebOperator.new
 
+    areas = TargetArea.where(category: '駅')
 
-    # @operator.user= account.user
-    # @operator.password= account.password
-    #
-    # result = @operator.login
-    # unless result
-    #   write_log 'logging in was failed'
-    # end
+    rooms = []
+    areas.each do |area|
 
+      search_result =  @operator.rooms(area)
+      unless search_result
+        write_log "searching #{area_name} was failed"
+      end
 
-    result = @operator.search
-    unless result
-      write_log 'searching was failed'
+      rooms.concat(search_result.content)
     end
 
-    result = @operator.rooms
-    if result.content.blank?
-      write_log  result.message if result.message.present?
-      write_log 'rooms were not found'
-    end
 
-    result
+    rooms.uniq! do |room|
+      room.airbnb_id
+    end
+    Room.import rooms
+
+    rooms
+
+  end
+
+  def self.search_prices
 
   end
 

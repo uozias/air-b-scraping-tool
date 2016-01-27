@@ -61,3 +61,4 @@ gem 'bootstrap-sass'
 gem 'knockoutjs-rails'
 
 
+gem 'activerecord-import'
