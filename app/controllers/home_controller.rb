@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
   def index
 
-    Worker.execute
+    result = Worker.execute
 
+    render json: result
   end
 end

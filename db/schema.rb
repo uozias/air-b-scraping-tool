@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160121155451) do
     t.string   "title",      limit: 255
     t.string   "url",        limit: 255
     t.integer  "capacity",   limit: 4
+    t.integer  "airbnb_id",  limit: 8
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

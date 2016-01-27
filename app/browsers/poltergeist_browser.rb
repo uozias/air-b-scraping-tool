@@ -108,7 +108,13 @@ class PoltergeistBrowser < Browser
   # xpathで示された要素のリストを返す
   #
   def find(xpath)
-    @poltergeist.find(:xpath, xpath)
+    result = nil
+    begin
+      result = @poltergeist.find(:xpath, xpath)
+    rescue Capybara::ElementNotFound => e
+      puts e.message
+    end
+    result
   end
 
   def all(xpath)

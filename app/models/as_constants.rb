@@ -37,22 +37,37 @@ module AsConstants
   module ROOMS
 
 
+    module REGEX
+
+      AIR_BNB_ID = /\/rooms\/(\d+)/
+
+    end
+
+
     module XPATH
 
-      ROOM = ''
 
-      PAGE_MAX = ''
+
+      PAGE_MAX = "//*[contains(@class, 'pagination')]//li[contains(@class, 'next_page')]/preceding-sibling::*[1]/a"
+
+      # 1つ1つの部屋
+      ROOMS = "//*[@class='listing']"
+
+      # 部屋名
+      ROOM_NAME_SUB = "div//h3"
+
+      ROOM_URL_SUB = "div//a[@class='text-normal']"
 
 
     end
 
     module HELPER
 
-      def page_url(page_num)
-        "https://www.airbnb.jp/s/%E6%9D%B1%E4%BA%AC?page=#{page_num}"
+      def area_url(area_name, page_num, checkin, checkout)
+        "https://www.airbnb.jp/s/%E7%94%A8%E8%B3%80?checkin=2016%2F01%2F27&checkout=2016%2F01%2F28page=#{page_num}"
       end
 
-      module_function :page_url
+      module_function :area_url
 
     end
 

@@ -4,6 +4,7 @@ class CreateRooms < ActiveRecord::Migration
       t.string :title
       t.string :url
       t.integer :capacity
+      t.integer :airbnb_id, :limit => 8
 
       t.timestamps null: false
     end

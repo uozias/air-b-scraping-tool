@@ -1,13 +1,13 @@
 class Worker
 
-
+  include LogManager
 
   def self.execute
 
 
     # account = Account.first
     # if account.nil?
-    #   puts 'no account'
+    #   write_log 'no account'
     #   return nil
     # end
     @operator = WebOperator.new
@@ -18,15 +18,22 @@ class Worker
     #
     # result = @operator.login
     # unless result
-    #   puts 'logging in was failed'
+    #   write_log 'logging in was failed'
     # end
 
 
     result = @operator.search
     unless result
-      puts 'searching was failed'
+      write_log 'searching was failed'
     end
 
+    result = @operator.rooms
+    if result.content.blank?
+      write_log  result.message if result.message.present?
+      write_log 'rooms were not found'
+    end
+
+    result
 
   end
 
