@@ -2,7 +2,7 @@ class WebOperator
 
   include AsConstants
 
-  TERM = 2.days
+  TERM = 2.days # 検索期間
 
 
   attr_accessor :user, :password

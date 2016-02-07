@@ -60,7 +60,7 @@ module AsConstants
       PAGE_MAX = "//*[contains(@class, 'pagination')]//li[contains(@class, 'next_page')]/preceding-sibling::*[1]/a"
 
       # 1つ1つの部屋
-      ROOMS = "//*[@class='listing']"
+      ROOMS = "//*[contains(@class,'listings-container')]/div/div/*[contains(@class, 'listing')]"
 
       # 部屋名
       ROOM_NAME_SUB = "div//h3"
